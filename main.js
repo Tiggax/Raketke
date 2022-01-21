@@ -1,8 +1,10 @@
 const FRAME_WIDTH = 1000;
 const FRAME_HEIGHT = 800;
 const POPULATION_SIZE = 80;
-const GENERATION_LENGTH = 100;
+const GENERATION_LENGTH = 150;
 const MAX_ROCKET_SPEED = 10;
+const PARTIAL_MUTATION_RATE = 0.05;
+const TOTAL_MUTATION_RATE = 0.01;
 
 let canvas;
 let population;
@@ -17,13 +19,17 @@ function main() {
 async function simulate() {
     while(true) {
         await simulateGeneration();
+        population.evaluate();
+        population.selection();
+        population.crossover();
+        population.mutation();
     }
 }
 async function simulateGeneration() {
     for (let tick = 0; tick < GENERATION_LENGTH; tick++) {
         update();
         draw();
-        await sleep(50);
+        await sleep(10);
     }
 }
 

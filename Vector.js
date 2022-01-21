@@ -5,6 +5,7 @@ class Vector {
         if(!x && !y) {
             this.x = Math.random()*2-1;
             this.y = Math.random()*2-1;
+            this.capSize(1);
         }
     }
     sum(vec){
@@ -18,5 +19,11 @@ class Vector {
             this.x *= coefficient;
             this.y *= coefficient;
         }
+    }
+    distTo(x,y){
+        return Math.sqrt(
+            (this.x - x)**2 +
+            (this.y - y)**2
+        );
     }
 }
